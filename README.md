@@ -1,6 +1,6 @@
 # NgxFormValidation
 
-Set of Angular Template Model Form Validators 
+Set of Angular Template Driven Form Validators 
 
 ## Installation
 
@@ -14,7 +14,7 @@ You can have a look and test validators here :
 [https://ngx-for-validation.stackblitz.io/](https://ngx-for-validation.stackblitz.io/)
 
 ## Usage 
-Here are 3 simple template model form validation examples :
+Here are 3 simple template driven form validation examples :
 
 ```
 <form #myform="ngForm" (ngSubmit)="myform.valid && onSubmit(myform)" novalidate>
