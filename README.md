@@ -11,7 +11,7 @@ The project requires :
 ## Demo
 
 You can have a look and test validators here :
-[https://ngx-for-validation.stackblitz.io/] (https://ngx-for-validation.stackblitz.io/)
+[https://ngx-for-validation.stackblitz.io/](https://ngx-for-validation.stackblitz.io/)
 
 ## Usage 
 
@@ -44,12 +44,12 @@ You can have a look and test validators here :
 
 </form>
 ```
-For other usage examples, loot at the [demo] (https://ngx-for-validation.stackblitz.io/) or [`form.component.html`] (https://github.com/Philippe-Collignon/ngx-form-validation/src/app/form/form.component.html) source code.
+For other usage examples, loot at the [demo](https://ngx-for-validation.stackblitz.io/) or [`form.component.html`](https://github.com/Philippe-Collignon/ngx-form-validation/src/app/form/form.component.html) source code.
 
 ## Validator.js
 
 Ngx Angular Form Validation is based on Validator.js
-For advanced options, please look to [Validator.js documentation :] (https://github.com/chriso/validator.js)
+For advanced options, please look to [Validator.js documentation :](https://github.com/chriso/validator.js)
 
 ## Show Error component
 
