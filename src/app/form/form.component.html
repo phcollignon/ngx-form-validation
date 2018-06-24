@@ -25,7 +25,7 @@
     <div class="form-group">
       <label for="pattern">Pattern</label>
       <input type="text" name="pattern" id="pattern" #pattern="ngModel" class="form-control" ngModel required pattern="[0-9]%"
-        placeholder="This field should has pattern : [0-9]%">
+        placeholder="This field should match pattern : [0-9]%">
       <validation-errors [control]="pattern"></validation-errors>
     </div>
 
