@@ -1,0 +1,495 @@
+<div>
+  <form #myform="ngForm" (ngSubmit)="myform.valid && onSubmit(myform)" novalidate>
+
+    <h2>Default Angular Validators</h2>
+    <div class="form-group">
+      <label for="required">Required</label>
+      <input type="text" name="required" id="required" #required="ngModel" class="form-control" ngModel required placeholder="Enter required data">
+      <validation-errors [control]="required"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="minLength">Min Length</label>
+      <input type="text" name="minLength" id="minLength" #minLength="ngModel" class="form-control" ngModel required minlength="3"
+        placeholder="This field should have specified min length (3)">
+      <validation-errors [control]="minLength"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="maxLength">Max Length</label>
+      <input type="text" name="maxLength" id="maxLength" #maxLength="ngModel" class="form-control" ngModel required maxlength="3"
+        placeholder="This field should have specified max length (3)">
+      <validation-errors [control]="maxLength"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="pattern">Pattern</label>
+      <input type="text" name="pattern" id="pattern" #pattern="ngModel" class="form-control" ngModel required pattern="[0-9]%"
+        placeholder="This field should has pattern : [0-9]%">
+      <validation-errors [control]="pattern"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" #email="ngModel" class="form-control" ngModel required email placeholder="This field should be an email">
+      <validation-errors [control]="email"></validation-errors>
+    </div>
+
+    <h2>Validator.js Angular Validators</h2>
+    <div class="form-group">
+      <label for="afterValidator">Future Date Validator</label>
+      <input type="text" name="afterValidator" id="afterValidator" #afterValidator="ngModel" class="form-control" ngModel required
+        afterValidator placeholder="This field should be a date (YYYY-MM-DD) in the future">
+      <validation-errors [control]="afterValidator"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="afterValidator2">After Date Validator</label>
+      <input type="text" name="afterValidator2" id="afterValidator2" #afterValidator2="ngModel" class="form-control" ngModel required
+        afterValidator="2018-06-26" placeholder="This field should be a date after the specified date 2018-06-26">
+      <validation-errors [control]="afterValidator2"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="alphaValidator">Alpha Validator</label>
+      <input type="text" name="alphaValidator" id="alphaValidator" #alphaValidator="ngModel" class="form-control" ngModel required
+        alphaValidator placeholder="This field should contain only letters (a-zA-Z).">
+      <validation-errors [control]="alphaValidator"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="alphaValidator2">Alpha Validator French Local</label>
+      <input type="text" name="alphaValidator2" id="alphaValidator2" #alphaValidator2="ngModel" class="form-control" ngModel required
+        alphaValidator="fr-FR" placeholder="This field should contain only letters (a-zA-Z) + french letters é,è,à ...">
+      <validation-errors [control]="alphaValidator2"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="alphanumericValidator">Alphanumeric Validator</label>
+      <input type="text" name="alphanumericValidator" id="alphanumericValidator" #alphanumericValidator="ngModel" class="form-control"
+        ngModel required alphanumericValidator placeholder="This field should contain only letters and numbers">
+      <validation-errors [control]="alphanumericValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="asciiValidator">ASCII Validator</label>
+      <input type="text" name="asciiValidator" id="asciiValidator" #asciiValidator="ngModel" class="form-control" ngModel required
+        asciiValidator placeholder="This field should contain ASCII chars only.">
+      <validation-errors [control]="asciiValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="base64Validator">base64 Validator</label>
+      <input type="text" name="base64Validator" id="base64Validator" #base64Validator="ngModel" class="form-control" ngModel required
+        base64Validator placeholder="This field should be base64 encoded.">
+      <validation-errors [control]="base64Validator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="beforeValidator">Past Date Validator</label>
+      <input type="text" name="beforeValidator" id="beforeValidator" #beforeValidator="ngModel" class="form-control" ngModel required
+        beforeValidator placeholder="This field should be a date (YYYY-MM-DD) in the past.">
+      <validation-errors [control]="beforeValidator"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="beforeValidator2">Before Date Validator</label>
+      <input type="text" name="beforeValidator2" id="beforeValidator2" #beforeValidator2="ngModel" class="form-control" ngModel
+        required beforeValidator="2018-06-26" placeholder="This field should be a date that's before the specified date 2018-06-26.">
+      <validation-errors [control]="beforeValidator2"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="booleanValidator">Boolean Validator</label>
+      <input type="text" name="booleanValidator" id="booleanValidator" #booleanValidator="ngModel" class="form-control" ngModel
+        required booleanValidator placeholder="This field should be a boolean.">
+      <validation-errors [control]="booleanValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="byteLengthValidator">Byte Length Validator</label>
+      <input type="text" name="byteLengthValidator" id="byteLengthValidator" #byteLengthValidator="ngModel" class="form-control"
+        ngModel required byteLengthValidator='{"min":"2", "max": "5"}' placeholder="This field's length (in UTF-8 bytes) should fall in a range [2,5].">
+      <validation-errors [control]="byteLengthValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="creditCardValidator">Credit Card Validator</label>
+      <input type="creditCardValidator" name="creditCardValidator" id="creditCardValidator" #creditCardValidator="ngModel" class="form-control"
+        ngModel required creditCardValidator placeholder="This field should be a credit card number.">
+      <validation-errors [control]="creditCardValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="currencyValidator">Currency Validator</label>
+      <input type="currencyValidator" name="currencyValidator" id="currencyValidator" #currencyValidator="ngModel" class="form-control"
+        ngModel required currencyValidator placeholder="This field should be a valid currency amount (default $NNN).">
+      <validation-errors [control]="currencyValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="currencyValidator2">Custom Currency Validator (EUR)</label>
+      <input type="text" name="currencyValidator2" id="currencyValidator2" #currencyValidator2="ngModel" class="form-control" ngModel
+        required currencyValidator='{"symbol":"€","symbol_after_digits": true}' placeholder="This field should be a valid currency amount (NNN€).">
+      <validation-errors [control]="currencyValidator2"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="dataURIValidator">Data URI Validator</label>
+      <input type="text" name="dataURIValidator" id="dataURIValidator" #dataURIValidator="ngModel" class="form-control" ngModel
+        required dataURIValidator placeholder="This field should be a data uri format.">
+      <validation-errors [control]="dataURIValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="decimalValidator">Decimal Validator</label>
+      <input type="text" name="decimalValidator" id="decimalValidator" #decimalValidator="ngModel" class="form-control" ngModel
+        required decimalValidator placeholder="This field should be a decimal number">
+      <validation-errors [control]="decimalValidator"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="decimalValidator2">Custom Decimal Validator</label>
+      <input type="text" name="decimalValidator2" id="decimalValidator2" #decimalValidator2="ngModel" class="form-control" ngModel
+        required decimalValidator='{"force_decimal": false, "decimal_digits": "1,2"}' placeholder="This field should be a decimal number NNN.DD">
+      <validation-errors [control]="decimalValidator2"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="divisibleByValidator">Divisible By Validator</label>
+      <input type="text" name="divisibleByValidator" id="divisibleByValidator" #divisibleByValidator="ngModel" class="form-control"
+        ngModel required divisibleByValidator="2" placeholder="This field should be a number that's divisible by the specified number : 2">
+      <validation-errors [control]="divisibleByValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="emailAndGmailValidator">Email And Gmail Validator</label>
+      <input type="emailAndGmailValidator" name="emailAndGmailValidator" id="emailAndGmailValidator" #emailAndGmailValidator="ngModel"
+        class="form-text" ngModel required emailAndGmailValidator placeholder="This field should be valid email address.">
+      <validation-errors [control]="emailAndGmailValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="emptyValidator">Empty Validator</label>
+      <input type="text" name="emptyValidator" id="emptyValidator" #emptyValidator="ngModel" class="form-control" ngModel required
+        emptyValidator placeholder="This field should has a length of zero.">
+      <validation-errors [control]="emptyValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="FQDNValidator">FQDN Validator</label>
+      <input type="text" name="FQDNValidator" id="FQDNValidator" #FQDNValidator="ngModel" class="form-control" ngModel required
+        FQDNValidator placeholder="This field should be a fully qualified domain name (e.g. domain.com).">
+      <validation-errors [control]="FQDNValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="floatValidator">Float Validator</label>
+      <input type="text" name="floatValidator" id="floatValidator" #floatValidator="ngModel" class="form-control" ngModel required
+        floatValidator placeholder="This field should be a float.">
+      <validation-errors [control]="floatValidator"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="floatValidator2">Float Min Max Validator</label>
+      <input type="text" name="floatValidator2" id="floatValidator2" #floatValidator2="ngModel" class="form-control" ngModel required
+        floatValidator='{ "min": 7.22, "max": 9.55 }' placeholder="This field should be a float between 7.22 and 9.55.">
+      <validation-errors [control]="floatValidator2"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="fullWidthValidator">Full Width Validator</label>
+      <input type="text" name="fullWidthValidator" id="fullWidthValidator" #fullWidthValidator="ngModel" class="form-control" ngModel
+        required fullWidthValidator placeholder="This field should contain any full-width chars.">
+      <validation-errors [control]="fullWidthValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="halfWidthValidator">Half Width Validator</label>
+      <input type="text" name="halfWidthValidator" id="halfWidthValidator" #halfWidthValidator="ngModel" class="form-control" ngModel
+        required halfWidthValidator placeholder="This field should contain any half-width chars.">
+      <validation-errors [control]="halfWidthValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="hashValidator">Hash Validator</label>
+      <input type="text" name="hashValidator" id="hashValidator" #hashValidator="ngModel" class="form-control" ngModel required
+        hashValidator="sha256" placeholder="This field should be a hash of type algorithm (default = sha256).">
+      <validation-errors [control]="hashValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="hexColorValidator">Hex Color Validator</label>
+      <input type="text" name="hexColorValidator" id="hexColorValidator" #hexColorValidator="ngModel" class="form-control" ngModel
+        required hexColorValidator placeholder="This field should be a hexadecimal color.">
+      <validation-errors [control]="hexColorValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="hexadecimalValidator">Hexadecimal Validator</label>
+      <input type="text" name="hexadecimalValidator" id="hexadecimalValidator" #hexadecimalValidator="ngModel" class="form-control"
+        ngModel required hexadecimalValidator placeholder="This field should be a hexadecimal number.">
+      <validation-errors [control]="hexadecimalValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="IPValidator">IP Validator</label>
+      <input type="text" name="IPValidator" id="IPValidator" #IPValidator="ngModel" class="form-control" ngModel required IPValidator
+        placeholder="This field should be an IP address">
+      <validation-errors [control]="IPValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="ISBNValidator">ISBN Validator</label>
+      <input type="text" name="ISBNValidator" id="ISBNValidator" #ISBNValidator="ngModel" class="form-control" ngModel required
+        ISBNValidator placeholder="This field should be an ISBN.">
+      <validation-errors [control]="ISBNValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="ISSNValidator">ISSN Validator</label>
+      <input type="text" name="ISSNValidator" id="ISSNValidator" #ISSNValidator="ngModel" class="form-control" ngModel required
+        ISSNValidator placeholder="This field should be an ISSN.">
+      <validation-errors [control]="ISSNValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="ISINValidator">ISIN Validator</label>
+      <input type="text" name="ISINValidator" id="ISINValidator" #ISINValidator="ngModel" class="form-control" ngModel required
+        ISINValidator placeholder="This field should be an ISIN (stock/security identifier).">
+      <validation-errors [control]="ISINValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="ISO8601Validator">Date ISO8601 Validator</label>
+      <input type="text" name="ISO8601Validator" id="ISO8601Validator" #ISO8601Validator="ngModel" class="form-control" ngModel
+        required ISO8601Validator placeholder="This field should be a valid ISO 8601 date (ex: 2018-06-26 ).">
+      <validation-errors [control]="ISO8601Validator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="ISO31661Alpha2Validator">ISO31661 Alpha2 Validator</label>
+      <input type="text" name="ISO31661Alpha2Validator" id="ISO31661Alpha2Validator" #ISO31661Alpha2Validator="ngModel" class="form-control"
+        ngModel required ISO31661Alpha2Validator placeholder="This field should be a valid ISO 3166-1 alpha-2 officially assigned country code.">
+      <validation-errors [control]="ISO31661Alpha2Validator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="ISRCValidator">ISRC Validator</label>
+      <input type="text" name="ISRCValidator" id="ISRCValidator" #ISRCValidator="ngModel" class="form-control" ngModel required
+        ISRCValidator placeholder="This field should be a ISRC.">
+      <validation-errors [control]="ISRCValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="inValidator">In Validator</label>
+      <input type="text" name="inValidator" id="inValidator" #inValidator="ngModel" class="form-control" ngModel required inValidator='["one", "two"]'
+        placeholder="This field should be in a array of allowed values ['one', 'two'].">
+      <validation-errors [control]="inValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="intValidator">Int Validator</label>
+      <input type="text" name="intValidator" id="intValidator" #intValidator="ngModel" class="form-control" ngModel required intValidator
+        placeholder="This field should be an integer.">
+      <validation-errors [control]="intValidator"></validation-errors>
+    </div>
+    <div class="form-group">
+      <label for="intValidator2">Int Min Max Validator</label>
+      <input type="text" name="intValidator2" id="intValidator2" #intValidator2="ngModel" class="form-control" ngModel required
+        intValidator='{ "min": 3, "max": 9}' placeholder="This field should be an integer in the range [3,9].">
+      <validation-errors [control]="intValidator2"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="JSONValidator">JSON Validator</label>
+      <input type="text" name="JSONValidator" id="JSONValidator" #JSONValidator="ngModel" class="form-control" ngModel required
+        JSONValidator placeholder="This field should be valid JSON.">
+      <validation-errors [control]="JSONValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="latLongValidator">Lat Long Validator</label>
+      <input type="text" name="latLongValidator" id="latLongValidator" #latLongValidator="ngModel" class="form-control" ngModel
+        required latLongValidator placeholder="This field should be a valid latitude-longitude coordinate in the format lat,long or lat, long.">
+      <validation-errors [control]="latLongValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="lengthValidator">Length Validator</label>
+      <input type="lengthValidator" name="lengthValidator" id="lengthValidator" #lengthValidator="ngModel" class="form-control"
+        ngModel required lengthValidator='{ "min": 3, "max": 5}' placeholder="This field's length should fall in a character number range [3,5].">
+      <validation-errors [control]="lengthValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="lowercaseValidator">Lowercase Validator</label>
+      <input type="text" name="lowercaseValidator" id="lowercaseValidator" #lowercaseValidator="ngModel" class="form-control" ngModel
+        required lowercaseValidator placeholder="This field should be lowercase.">
+      <validation-errors [control]="lowercaseValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="MACAddressValidator">MAC Address Validator</label>
+      <input type="text" name="MACAddressValidator" id="MACAddressValidator" #MACAddressValidator="ngModel" class="form-control"
+        ngModel required MACAddressValidator placeholder="This field should be a MAC address.">
+      <validation-errors [control]="MACAddressValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="MD5Validator">MD5 Validator</label>
+      <input type="text" name="MD5Validator" id="MD5Validator" #MD5Validator="ngModel" class="form-control" ngModel required MD5Validator
+        placeholder="This field should be a MD5 hash.">
+      <validation-errors [control]="MD5Validator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="mimeTypeValidator">Mime Type Validator</label>
+      <input type="text" name="mimeTypeValidator" id="mimeTypeValidator" #mimeTypeValidator="ngModel" class="form-control" ngModel
+        required mimeTypeValidator placeholder="This field should matches to a valid MIME type format.">
+      <validation-errors [control]="mimeTypeValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="mongoIdValidator">Mongo Id Validator</label>
+      <input type="mongoIdValidator" name="mongoIdValidator" id="mongoIdValidator" #mongoIdValidator="ngModel" class="form-control"
+        ngModel required mongoIdValidator placeholder="This field should be a valid hex-encoded representation of a MongoDB ObjectId.">
+      <validation-errors [control]="mongoIdValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="multibyteValidator">Multibyte Validator</label>
+      <input type="multibyteValidator" name="multibyteValidator" id="multibyteValidator" #multibyteValidator="ngModel" class="form-control"
+        ngModel required multibyteValidator placeholder="This field should contain one or more multibyte chars.">
+      <validation-errors [control]="multibyteValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="numericValidator">Numeric Validator</label>
+      <input type="text" name="numericValidator" id="numericValidator" #numericValidator="ngModel" class="form-control" ngModel
+        required numericValidator placeholder="This field should contain only numbers.">
+      <validation-errors [control]="numericValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="portValidator">Port Validator</label>
+      <input type="text" name="portValidator" id="portValidator" #portValidator="ngModel" class="form-control" ngModel required
+        portValidator placeholder="This field should be a valid port number.">
+      <validation-errors [control]="portValidator"></validation-errors>
+    </div>
+
+
+
+
+    <div class="form-group">
+      <label for="postalCodeValidator">Postal Code Validator</label>
+      <input type="text" name="postalCodeValidator" id="postalCodeValidator" #postalCodeValidator="ngModel" class="form-control"
+        ngModel required postalCodeValidator placeholder="This field should be a postal code.">
+      <validation-errors [control]="postalCodeValidator"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="postalCodeValidator2">Custom Postal Code Validator (US)</label>
+      <input type="text" name="postalCodeValidator2" id="postalCodeValidator2" #postalCodeValidator2="ngModel" class="form-control"
+        ngModel required postalCodeValidator="US" placeholder="This field should be an US postal code.">
+      <validation-errors [control]="postalCodeValidator2"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="surrogatePairValidator">Surrogate Pair Validator</label>
+      <input type="text" name="surrogatePairValidator" id="surrogatePairValidator" #surrogatePairValidator="ngModel" class="form-control"
+        ngModel required surrogatePairValidator placeholder="This field should contain any surrogate pairs chars.">
+      <validation-errors [control]="surrogatePairValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="URLValidator">URL Validator</label>
+      <input type="text" name="URLValidator" id="URLValidator" #URLValidator="ngModel" class="form-control" ngModel required URLValidator
+        placeholder="This field should be an URL.">
+      <validation-errors [control]="URLValidator"></validation-errors>
+    </div>
+
+    <div class="form-group">
+      <label for="URLValidator2">Custom URL Validator (protocol : ftp)</label>
+      <input type="text" name="URLValidator2" id="URLValidator2" #URLValidator2="ngModel" class="form-control" ngModel required
+        URLValidator='{"protocols":["ftp"]}' placeholder="This field should be an URL.">
+      <validation-errors [control]="URLValidator2"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="UUIDValidator">UUID Validator</label>
+      <input type="text" name="UUIDValidator" id="UUIDValidator" #UUIDValidator="ngModel" class="form-control" ngModel required
+        UUIDValidator placeholder="This field should be a UUID.">
+      <validation-errors [control]="UUIDValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="uppercaseValidator">Uppercase Validator</label>
+      <input type="uppercaseValidator" name="uppercaseValidator" id="uppercaseValidator" #uppercaseValidator="ngModel" class="form-control"
+        ngModel required uppercaseValidator placeholder="This field should be uppercase.">
+      <validation-errors [control]="uppercaseValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="variableWidthValidator">Variable Width Validator</label>
+      <input type="variableWidthValidator" name="variableWidthValidator" id="variableWidthValidator" #variableWidthValidator="ngModel"
+        class="form-control" ngModel required variableWidthValidator placeholder="This field should contain a mixture of full and half-width chars.">
+      <validation-errors [control]="variableWidthValidator"></validation-errors>
+    </div>
+
+
+    <div class="form-group">
+      <label for="whitelistedValidator">Whitelisted Validator</label>
+      <input type="text" name="whitelistedValidator" id="whitelistedValidator" #whitelistedValidator="ngModel" class="form-control"
+        ngModel required whitelistedValidator="aiouey" placeholder="This field should have characters that appear in the whitelist ( aiouey ).">
+      <validation-errors [control]="whitelistedValidator"></validation-errors>
+    </div>
+
+
+
+    <button type="submit" [disabled]="!myform.valid" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+
+</form>
+</div>
