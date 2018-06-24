@@ -3,10 +3,10 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-form-component',
-  templateUrl: './form-component.component.html',
-  styleUrls: ['./form-component.component.css']
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
 })
-export class FormComponentComponent implements OnInit {
+export class FormComponent implements OnInit {
 
   constructor() { }
 
