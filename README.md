@@ -44,7 +44,7 @@ You can have a look and test validators here :
 
 </form>
 ```
-For other usage examples, loot at the [demo](https://ngx-for-validation.stackblitz.io/) or [`form.component.html`](https://github.com/Philippe-Collignon/ngx-form-validation/src/app/form/form.component.html) source code.
+For other usage examples, loot at the [demo](https://ngx-for-validation.stackblitz.io/) or [`form.component.html`](https://github.com/Philippe-Collignon/ngx-form-validation/blob/master/src/app/form/form.component.html) source code.
 
 ## Validator.js
 
