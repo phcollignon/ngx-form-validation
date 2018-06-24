@@ -14,6 +14,7 @@ You can have a look and test validators here :
 [https://ngx-for-validation.stackblitz.io/](https://ngx-for-validation.stackblitz.io/)
 
 ## Usage 
+Here are 3 simple template model form validation examples :
 
 ```
 <form #myform="ngForm" (ngSubmit)="myform.valid && onSubmit(myform)" novalidate>
