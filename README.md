@@ -1,27 +1,56 @@
 # NgxFormValidation
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
+Set of Angular Template Model Form Validators 
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The project requires :
+* bootstrap  : `npm install bootstrap@latest`
+* validator.js : `npm install validator` `npm install @types/validator`
 
-## Code scaffolding
+## Demo
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You can have a look and test validators here :
+[https://ngx-for-validation.stackblitz.io/] (https://ngx-for-validation.stackblitz.io/)
 
-## Build
+## Usage 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+<form #myform="ngForm" (ngSubmit)="myform.valid && onSubmit(myform)" novalidate>
 
-## Running unit tests
+    <div class="form-group">
+      <label for="intValidator">Int Validator</label>
+      <input type="text" name="intValidator" id="intValidator" #intValidator="ngModel" class="form-control" ngModel required intValidator
+        placeholder="This field should be an integer.">
+      <validation-errors [control]="intValidator"></validation-errors>
+    </div>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    <div class="form-group">
+      <label for="intValidator2">Int Min Max Validator</label>
+      <input type="text" name="intValidator2" id="intValidator2" #intValidator2="ngModel" class="form-control" ngModel required
+        intValidator='{ "min": 3, "max": 9}' placeholder="This field should be an integer in the range [3,9].">
+      <validation-errors [control]="intValidator2"></validation-errors>
+    </div>
 
-## Running end-to-end tests
+    <div class="form-group">
+      <label for="inValidator">In Validator</label>
+      <input type="text" name="inValidator" id="inValidator" #inValidator="ngModel" class="form-control" ngModel required inValidator='["one", "two"]'
+        placeholder="This field should be in a array of allowed values ['one', 'two'].">
+      <validation-errors [control]="inValidator"></validation-errors>
+    </div>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+    <button type="submit" [disabled]="!myform.valid" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
 
-## Further help
+</form>
+```
+For other usage examples, loot at the [demo] (https://ngx-for-validation.stackblitz.io/) or [`form.component.html`] (https://github.com/Philippe-Collignon/ngx-form-validation/src/app/form/form.component.html) source code
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Validator.js
+
+Ngx Angular Form Validation is based on Validator.js
+For advanced options, please look to [Validator.js documentation :] (https://github.com/chriso/validator.js)
+
+## Show Error component
+
+The Show Error component is based on this excellent [Angular 4 Forms Validation article : ](https://www.toptal.com/angular-js/angular-4-forms-validation)
