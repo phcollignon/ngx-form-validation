@@ -13,7 +13,7 @@ export class FormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit (myform : NgForm) {
+  onSubmit (myform: NgForm) {
     console.log('Successful submit');
     console.log(myform);
   }

@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "tsc": "tsc  --project tsconfig.json --pretty",
+    "lint-fix": "ng lint ngx-form-validation --fix --force  --format msbuild"
   },
   "private": true,
   "dependencies": {
