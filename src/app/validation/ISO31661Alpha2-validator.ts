@@ -13,7 +13,8 @@ export class ISO31661Alpha2ValidatorDirective implements Validator {
 
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
-  @Input() nfvISO31661Alpha2Validator: string ;
+  @Input()
+  nfvISO31661Alpha2Validator!: string;
   @HostListener('input') onInput() {
     if (!this.isValid) {
       this.renderer.addClass(this.el.nativeElement, 'is-invalid');
@@ -22,7 +23,7 @@ export class ISO31661Alpha2ValidatorDirective implements Validator {
     }
   }
 
-  validate(c: FormControl): ValidationErrors {
+  validate(c: FormControl): ValidationErrors | null {
     const value = String(c.value);
 
               this.isValid = validator.isISO31661Alpha2(value);

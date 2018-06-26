@@ -25,7 +25,8 @@ export class ISSNValidatorDirective implements Validator {
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  @Input() nfvISSNValidator: string;
+  @Input()
+  nfvISSNValidator!: string;
   @HostListener('input')
   onInput() {
     if (!this.isValid) {
@@ -35,7 +36,7 @@ export class ISSNValidatorDirective implements Validator {
     }
   }
 
-  validate(c: FormControl): ValidationErrors {
+  validate(c: FormControl): ValidationErrors | null {
     const value = String(c.value);
 
     if (this.nfvISSNValidator) {

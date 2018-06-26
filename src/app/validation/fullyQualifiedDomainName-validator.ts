@@ -13,7 +13,8 @@ export class FQDNValidatorDirective implements Validator {
 
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
-  @Input() nfvFQDNValidator: string ;
+  @Input()
+  nfvFQDNValidator!: string;
   @HostListener('input') onInput() {
     if (!this.isValid) {
       this.renderer.addClass(this.el.nativeElement, 'is-invalid');
@@ -22,7 +23,7 @@ export class FQDNValidatorDirective implements Validator {
     }
   }
 
-  validate(c: FormControl): ValidationErrors {
+  validate(c: FormControl): ValidationErrors | null {
     const value = String(c.value);
 
           if (this.nfvFQDNValidator)  {

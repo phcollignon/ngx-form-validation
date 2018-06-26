@@ -13,7 +13,8 @@ export class VariableWidthValidatorDirective implements Validator {
 
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
-  @Input() nfvVariableWidthValidator: string ;
+  @Input()
+  nfvVariableWidthValidator!: string;
   @HostListener('input') onInput() {
     if (!this.isValid) {
       this.renderer.addClass(this.el.nativeElement, 'is-invalid');
@@ -22,7 +23,7 @@ export class VariableWidthValidatorDirective implements Validator {
     }
   }
 
-  validate(c: FormControl): ValidationErrors {
+  validate(c: FormControl): ValidationErrors | null {
     const value = String(c.value);
 
               this.isValid = validator.isVariableWidth(value);
