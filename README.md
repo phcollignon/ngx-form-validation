@@ -21,23 +21,23 @@ Here are 3 simple template driven form validation examples :
 
     <div class="form-group">
       <label for="intValidator">Int Validator</label>
-      <input type="text" name="intValidator" id="intValidator" #intValidator="ngModel" class="form-control" ngModel required intValidator
+      <input type="text" name="intValidator" id="intValidator" #intValidator="ngModel" class="form-control" ngModel required nfvIntValidator
         placeholder="This field should be an integer.">
-      <validation-errors [control]="intValidator"></validation-errors>
+      <nfv-validation-errors [control]="intValidator"></nfv-validation-errors>
     </div>
 
     <div class="form-group">
       <label for="intValidator2">Int Min Max Validator</label>
       <input type="text" name="intValidator2" id="intValidator2" #intValidator2="ngModel" class="form-control" ngModel required
-        intValidator='{ "min": 3, "max": 9}' placeholder="This field should be an integer in the range [3,9].">
-      <validation-errors [control]="intValidator2"></validation-errors>
+        nfwIntValidator='{ "min": 3, "max": 9}' placeholder="This field should be an integer in the range [3,9].">
+      <nfv-validation-errors [control]="intValidator2"></nfv-validation-errors>
     </div>
 
     <div class="form-group">
       <label for="inValidator">In Validator</label>
-      <input type="text" name="inValidator" id="inValidator" #inValidator="ngModel" class="form-control" ngModel required inValidator='["one", "two"]'
+      <input type="text" name="inValidator" id="inValidator" #inValidator="ngModel" class="form-control" ngModel required nfvInValidator='["one", "two"]'
         placeholder="This field should be in a array of allowed values ['one', 'two'].">
-      <validation-errors [control]="inValidator"></validation-errors>
+      <nfv-validation-errors [control]="inValidator"></nfv-validation-errors>
     </div>
 
     <button type="submit" [disabled]="!myform.valid" class="btn btn-primary">Submit</button>

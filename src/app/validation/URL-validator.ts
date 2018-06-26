@@ -1,37 +1,42 @@
-import { Directive, HostListener, ElementRef, Renderer, HostBinding, Input } from '@angular/core';
+import { Directive, HostListener, ElementRef, Renderer2, HostBinding, Input } from '@angular/core';
 import { NG_VALIDATORS, Validator, ValidationErrors, FormControl } from '@angular/forms';
-import * as validator from 'validator'
+import * as validator from 'validator';
 
 @Directive({
-  selector: '[URLValidator]',
+  selector: '[nfvURLValidator]',
   providers: [{ provide: NG_VALIDATORS, useExisting: URLValidatorDirective, multi: true }],
-  
+
 })
 export class URLValidatorDirective implements Validator {
 
-  isValid: boolean = true;
- 
-  constructor(private el: ElementRef,private renderer: Renderer) { }
+  isValid = true;
 
-  @Input() URLValidator: string ;
-  @HostListener("input") onInput() {
-    this.renderer.setElementClass(this.el.nativeElement, "is-invalid", !this.isValid);
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
+
+  @Input()
+  nfvURLValidator!: string;
+  @HostListener('input') onInput() {
+    if (!this.isValid) {
+      this.renderer.addClass(this.el.nativeElement, 'is-invalid');
+    } else {
+      this.renderer.removeClass(this.el.nativeElement, 'is-invalid');
+    }
   }
 
-  validate(c: FormControl): ValidationErrors {
+  validate(c: FormControl): ValidationErrors | null {
     const value = String(c.value);
-    
-          if(this.URLValidator)  {
-            
-            let param : ValidatorJS.IsURLOptions = JSON.parse(this.URLValidator);
-            this.isValid = validator.isURL(value,param);
-            
-          } else {    
+
+          if (this.nfvURLValidator)  {
+
+            const param: ValidatorJS.IsURLOptions = JSON.parse(this.nfvURLValidator);
+            this.isValid = validator.isURL(value, param);
+
+          } else {
               this.isValid = validator.isURL(value);
-         } 
+         }
     const message = {
       'URLValidator': {
-        'param': this.URLValidator
+        'param': this.nfvURLValidator
       }
     };
     return this.isValid ? null : message;

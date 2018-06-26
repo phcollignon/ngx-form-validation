@@ -1,34 +1,39 @@
-import { Directive, HostListener, ElementRef, Renderer, HostBinding, Input } from '@angular/core';
+import { Directive, HostListener, ElementRef, Renderer2, HostBinding, Input } from '@angular/core';
 import { NG_VALIDATORS, Validator, ValidationErrors, FormControl } from '@angular/forms';
-import * as validator from 'validator'
+import * as validator from 'validator';
 
 @Directive({
-  selector: '[alphaValidator]',
+  selector: '[nfvAlphaValidator]',
   providers: [{ provide: NG_VALIDATORS, useExisting: AlphaValidatorDirective, multi: true }],
-  
+
 })
 export class AlphaValidatorDirective implements Validator {
 
-  isValid: boolean = true;
- 
-  constructor(private el: ElementRef,private renderer: Renderer) { }
+  isValid = true;
 
-  @Input() alphaValidator: string ;
-  @HostListener("input") onInput() {
-    this.renderer.setElementClass(this.el.nativeElement, "is-invalid", !this.isValid);
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
+
+  @Input()
+  alphaValidator!: string;
+  @HostListener('input') onInput() {
+    if (!this.isValid) {
+      this.renderer.addClass(this.el.nativeElement, 'is-invalid');
+    } else {
+      this.renderer.removeClass(this.el.nativeElement, 'is-invalid');
+    }
   }
 
-  validate(c: FormControl): ValidationErrors {
+  validate(c: FormControl): ValidationErrors | null {
     const value = String(c.value);
-    
-          if(this.alphaValidator)  {
-            
-            let param : string = this.alphaValidator;
-            this.isValid = validator.isAlpha(value,param as ValidatorJS.AlphaLocale);
-            
-          } else {    
+
+          if (this.alphaValidator)  {
+
+            const param: string = this.alphaValidator;
+            this.isValid = validator.isAlpha(value, param as ValidatorJS.AlphaLocale);
+
+          } else {
               this.isValid = validator.isAlpha(value);
-         } 
+         }
     const message = {
       'alphaValidator': {
         'param': this.alphaValidator
