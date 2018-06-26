@@ -1,9 +1,9 @@
-import { Directive, HostListener, ElementRef, Renderer, HostBinding, Input } from '@angular/core';
+import { Directive, HostListener, ElementRef, Renderer2, HostBinding, Input } from '@angular/core';
 import { NG_VALIDATORS, Validator, ValidationErrors, FormControl } from '@angular/forms';
 import * as validator from 'validator';
 
 @Directive({
-  selector: '[decimalValidator]',
+  selector: '[nfvDecimalValidator]',
   providers: [{ provide: NG_VALIDATORS, useExisting: DecimalValidatorDirective, multi: true }],
 
 })
@@ -11,19 +11,23 @@ export class DecimalValidatorDirective implements Validator {
 
   isValid = true;
 
-  constructor(private el: ElementRef, private renderer: Renderer) { }
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 
-  @Input() decimalValidator: string ;
+  @Input() nfvDecimalValidator: string ;
   @HostListener('input') onInput() {
-    this.renderer.setElementClass(this.el.nativeElement, 'is-invalid', !this.isValid);
+    if (!this.isValid) {
+      this.renderer.addClass(this.el.nativeElement, 'is-invalid');
+    } else {
+      this.renderer.removeClass(this.el.nativeElement, 'is-invalid');
+    }
   }
 
   validate(c: FormControl): ValidationErrors {
     const value = String(c.value);
 
-          if (this.decimalValidator)  {
+          if (this.nfvDecimalValidator)  {
 
-            const param: ValidatorJS.IsDecimalOptions = JSON.parse(this.decimalValidator);
+            const param: ValidatorJS.IsDecimalOptions = JSON.parse(this.nfvDecimalValidator);
             this.isValid = validator.isDecimal(value, param);
 
           } else {
@@ -31,7 +35,7 @@ export class DecimalValidatorDirective implements Validator {
          }
     const message = {
       'decimalValidator': {
-        'param': this.decimalValidator
+        'param': this.nfvDecimalValidator
       }
     };
     return this.isValid ? null : message;

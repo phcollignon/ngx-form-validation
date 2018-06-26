@@ -1,9 +1,9 @@
-import { Directive, HostListener, ElementRef, Renderer, HostBinding, Input } from '@angular/core';
+import { Directive, HostListener, ElementRef, Renderer2, HostBinding, Input } from '@angular/core';
 import { NG_VALIDATORS, Validator, ValidationErrors, FormControl } from '@angular/forms';
 import * as validator from 'validator';
 
 @Directive({
-  selector: '[currencyValidator]',
+  selector: '[nfvCurrencyValidator]',
   providers: [{ provide: NG_VALIDATORS, useExisting: CurrencyValidatorDirective, multi: true }],
 
 })
@@ -11,19 +11,23 @@ export class CurrencyValidatorDirective implements Validator {
 
   isValid = true;
 
-  constructor(private el: ElementRef, private renderer: Renderer) { }
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 
-  @Input() currencyValidator: string ;
+  @Input() nfvCurrencyValidator: string ;
   @HostListener('input') onInput() {
-    this.renderer.setElementClass(this.el.nativeElement, 'is-invalid', !this.isValid);
+    if (!this.isValid) {
+      this.renderer.addClass(this.el.nativeElement, 'is-invalid');
+    } else {
+      this.renderer.removeClass(this.el.nativeElement, 'is-invalid');
+    }
   }
 
   validate(c: FormControl): ValidationErrors {
     const value = String(c.value);
 
-          if (this.currencyValidator)  {
+          if (this.nfvCurrencyValidator)  {
 
-            const param: ValidatorJS.IsCurrencyOptions = JSON.parse(this.currencyValidator);
+            const param: ValidatorJS.IsCurrencyOptions = JSON.parse(this.nfvCurrencyValidator);
             this.isValid = validator.isCurrency(value, param);
 
           } else {
@@ -31,7 +35,7 @@ export class CurrencyValidatorDirective implements Validator {
          }
     const message = {
       'currencyValidator': {
-        'param': this.currencyValidator
+        'param': this.nfvCurrencyValidator
       }
     };
     return this.isValid ? null : message;

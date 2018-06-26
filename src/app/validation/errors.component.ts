@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AbstractControlDirective, AbstractControl } from '@angular/forms';
 
 @Component({
-  selector: 'validation-errors',
+  selector: 'nfv-validation-errors',
   templateUrl: './errors.component.html',
   styleUrls: ['./errors.component.css']
 })
@@ -42,11 +42,13 @@ export class ErrorsComponent {
     'ISSNValidator': (params) =>  'This field should be an ISSN. '  + params.param ,
     'ISINValidator': (params) =>  'This field should be an ISIN (stock/security identifier). '  + params.param ,
     'ISO8601Validator': (params) =>  'This field should be a valid ISO 8601 date. '  + params.param ,
+    // tslint:disable-next-line:max-line-length
     'ISO31661Alpha2Validator': (params) =>  'This field should be a valid ISO 3166-1 alpha-2 officially assigned country code. '  + params.param ,
     'ISRCValidator': (params) =>  'This field should be a ISRC. '  + params.param ,
     'inValidator': (params) =>  'This field should be in a array of allowed values. '  + params.param ,
     'intValidator': (params) =>  'This field should be an integer. '  + params.param ,
     'JSONValidator': (params) =>  'This field should be valid JSON. '  + params.param ,
+    // tslint:disable-next-line:max-line-length
     'latLongValidator': (params) =>  'This field should be a valid latitude-longitude coordinate in the format lat,long or lat, long. '  + params.param ,
     'lengthValidator': (params) =>  'This field\'s length should fall in a range. '  + params.param ,
     'lowercaseValidator': (params) =>  'This field should be lowercase. '  + params.param ,
@@ -77,7 +79,6 @@ export class ErrorsComponent {
   }
 
   listOfErrors(): string[] {
-    this.control;
     return Object.keys(this.control.errors)
       .map(field => this.getMessage(field, this.control.errors[field]));
   }

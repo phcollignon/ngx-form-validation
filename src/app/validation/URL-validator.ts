@@ -1,9 +1,9 @@
-import { Directive, HostListener, ElementRef, Renderer, HostBinding, Input } from '@angular/core';
+import { Directive, HostListener, ElementRef, Renderer2, HostBinding, Input } from '@angular/core';
 import { NG_VALIDATORS, Validator, ValidationErrors, FormControl } from '@angular/forms';
 import * as validator from 'validator';
 
 @Directive({
-  selector: '[URLValidator]',
+  selector: '[nfvURLValidator]',
   providers: [{ provide: NG_VALIDATORS, useExisting: URLValidatorDirective, multi: true }],
 
 })
@@ -11,19 +11,23 @@ export class URLValidatorDirective implements Validator {
 
   isValid = true;
 
-  constructor(private el: ElementRef, private renderer: Renderer) { }
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 
-  @Input() URLValidator: string ;
+  @Input() nfvURLValidator: string ;
   @HostListener('input') onInput() {
-    this.renderer.setElementClass(this.el.nativeElement, 'is-invalid', !this.isValid);
+    if (!this.isValid) {
+      this.renderer.addClass(this.el.nativeElement, 'is-invalid');
+    } else {
+      this.renderer.removeClass(this.el.nativeElement, 'is-invalid');
+    }
   }
 
   validate(c: FormControl): ValidationErrors {
     const value = String(c.value);
 
-          if (this.URLValidator)  {
+          if (this.nfvURLValidator)  {
 
-            const param: ValidatorJS.IsURLOptions = JSON.parse(this.URLValidator);
+            const param: ValidatorJS.IsURLOptions = JSON.parse(this.nfvURLValidator);
             this.isValid = validator.isURL(value, param);
 
           } else {
@@ -31,7 +35,7 @@ export class URLValidatorDirective implements Validator {
          }
     const message = {
       'URLValidator': {
-        'param': this.URLValidator
+        'param': this.nfvURLValidator
       }
     };
     return this.isValid ? null : message;

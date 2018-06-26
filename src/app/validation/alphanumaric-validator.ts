@@ -1,9 +1,9 @@
-import { Directive, HostListener, ElementRef, Renderer, HostBinding, Input } from '@angular/core';
+import { Directive, HostListener, ElementRef, Renderer2, HostBinding, Input } from '@angular/core';
 import { NG_VALIDATORS, Validator, ValidationErrors, FormControl } from '@angular/forms';
 import * as validator from 'validator';
 
 @Directive({
-  selector: '[alphanumericValidator]',
+  selector: '[nfvAlphanumericValidator]',
   providers: [{ provide: NG_VALIDATORS, useExisting: AlphanumericValidatorDirective, multi: true }],
 
 })
@@ -11,19 +11,23 @@ export class AlphanumericValidatorDirective implements Validator {
 
   isValid = true;
 
-  constructor(private el: ElementRef, private renderer: Renderer) { }
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 
-  @Input() alphanumericValidator: string ;
+  @Input() nfvAlphanumericValidator: string ;
   @HostListener('input') onInput() {
-    this.renderer.setElementClass(this.el.nativeElement, 'is-invalid', !this.isValid);
+    if (!this.isValid) {
+      this.renderer.addClass(this.el.nativeElement, 'is-invalid');
+    } else {
+      this.renderer.removeClass(this.el.nativeElement, 'is-invalid');
+    }
   }
 
   validate(c: FormControl): ValidationErrors {
     const value = String(c.value);
 
-          if (this.alphanumericValidator)  {
+          if (this.nfvAlphanumericValidator)  {
 
-            const param: string = this.alphanumericValidator;
+            const param: string = this.nfvAlphanumericValidator;
             this.isValid = validator.isAlphanumeric(value, param as ValidatorJS.AlphanumericLocale);
 
           } else {
@@ -31,7 +35,7 @@ export class AlphanumericValidatorDirective implements Validator {
          }
     const message = {
       'alphanumericValidator': {
-        'param': this.alphanumericValidator
+        'param': this.nfvAlphanumericValidator
       }
     };
     return this.isValid ? null : message;
