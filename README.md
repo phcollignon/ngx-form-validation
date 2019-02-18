@@ -5,13 +5,21 @@ Set of Angular Template Driven Form Validators
 ## Installation
 
 The project requires :
-* bootstrap  : `npm install bootstrap@latest`
-* validator.js : `npm install validator` `npm install @types/validator`
+* bootstrap  
+* validator.js 
+  
+To install required modules run : `npm install` 
+
+To run locally : `npm start`
+
+**Local demo** is then available at the following url : `http://localhost:4200`
 
 ## Demo
 
-You can have a look and test validators here :
+You can have a look and test validators with **Online Demo** here :
 [https://ngx-for-validation.stackblitz.io/](https://ngx-for-validation.stackblitz.io/)
+
+![Demo](/angular.PNG)
 
 ## Usage 
 Here are 3 simple template driven form validation examples :
